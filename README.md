@@ -8,5 +8,7 @@
 In the project directory, you can run:
 ### `npm start`
 
+You must have MySQL DataBase to get started with the project and also make the connection.
+
 
 
