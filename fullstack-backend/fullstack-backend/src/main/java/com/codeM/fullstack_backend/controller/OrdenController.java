@@ -21,7 +21,7 @@ public class OrdenController {
     private ArticuloRepository articuloRepository;
 
     @PostMapping("/orden")
-    public ResponseEntity<Orden> newOrden(@RequestBody Orden newOrderRequest) {
+    public ResponseEntity<Object> newOrden(@RequestBody Orden newOrderRequest) {
         System.out.println("Front");
         System.out.println(newOrderRequest);
         Orden orden = new Orden();
@@ -34,9 +34,21 @@ public class OrdenController {
             Articulo article = articuloRepository.findById(articleId)
                     .orElseThrow(() -> new RuntimeException("Article not found with id: " + articleId));
 
+            Integer requestQuantity= orderArticle.getCantidad();
+            Integer availableStock= article.getStock();
+
+            if (requestQuantity>availableStock){
+                return ResponseEntity.badRequest().body("No hay suficiente cantidad"+ article.getNombre());
+            }
+
             OrdenArticulo newOrderArticle = new OrdenArticulo();
             newOrderArticle.setOrder(orden);
             newOrderArticle.setArticulo(article);
+            newOrderArticle.setCantidad(orderArticle.getCantidad());
+
+            article.setStock(availableStock-requestQuantity);
+            articuloRepository.save(article);
+
 
             orden.getOrderArticles().add(newOrderArticle);
         }

@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
     const [clientes, setClientes] = useState([]);
-    const [ordenes, setOrdenes] = useState([]);
-    const [articulos, setArticulos] = useState([]);
+
 
     useEffect(() => {
         loadClientes();

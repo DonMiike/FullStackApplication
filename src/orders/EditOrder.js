@@ -51,7 +51,7 @@ export default function EditOrder() {
                             <input type="date" className='form-control' name='fecha' value={fecha} onChange={onInputChange} />
                         </div>
                         <button type='submit' className='btn btn-outline-primary'>Actualizar</button>
-                        <Link className='btn btn-outline-danger mx-2' to="/orders">Cancelar</Link>
+                        <Link className='btn btn-outline-danger mx-2' to="/orderHome">Cancelar</Link>
                     </form>
                 </div>
             </div>

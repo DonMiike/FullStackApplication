@@ -20,6 +20,16 @@ public class OrdenArticulo {
     @JoinColumn(name = "articulo_id", nullable = false)
     private Articulo articulo;
 
+    private Integer cantidad;
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
     public Long getId() {
         return id;
     }
